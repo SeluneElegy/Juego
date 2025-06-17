@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 signal health_depleted
 
+func _ready():
+        add_to_group("jugador")
+
 var vida = 100.0
 
 var estadisticas = {
