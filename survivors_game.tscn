@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=2 uid="uid://juego"]
+
+[ext_resource path="res://player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://mob.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+size = Vector2(16, 720)
+
+[sub_resource type="RectangleShape2D" id=2]
+size = Vector2(16, 720)
+
+[sub_resource type="RectangleShape2D" id=3]
+size = Vector2(1280, 16)
+
+[sub_resource type="RectangleShape2D" id=4]
+size = Vector2(1280, 16)
+
+[node name="Juego" type="Node2D"]
+script = ExtResource(3)
+
+[node name="Jugador" parent="." instance=ExtResource(1)]
+position = Vector2(640, 360)
+
+[node name="Enemigos" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+one_shot = false
+
+[node name="Fondo" type="ColorRect" parent="."]
+position = Vector2(0, 0)
+size = Vector2(1280, 720)
+color = Color(1, 1, 1, 1)
+z_index = -1
+
+[node name="CollisionLimiteIzq" type="StaticBody2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="CollisionLimiteIzq"]
+shape = SubResource(1)
+position = Vector2(0, 360)
+
+[node name="CollisionLimiteDer" type="StaticBody2D" parent="."]
+[node name="Shape2" type="CollisionShape2D" parent="CollisionLimiteDer"]
+shape = SubResource(2)
+position = Vector2(1280, 360)
+
+[node name="CollisionLimiteArr" type="StaticBody2D" parent="."]
+[node name="Shape3" type="CollisionShape2D" parent="CollisionLimiteArr"]
+shape = SubResource(3)
+position = Vector2(640, 0)
+
+[node name="CollisionLimiteAbj" type="StaticBody2D" parent="."]
+[node name="Shape4" type="CollisionShape2D" parent="CollisionLimiteAbj"]
+shape = SubResource(4)
+position = Vector2(640, 720)
+
+
+[node name="Grafo" type="Node" parent="."]
+script = ExtResource("res://Grafo.gd")
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
