@@ -55,7 +55,9 @@ func buscar_ruta(inicio: String, destino: String) -> Array:
 				if vecino not in abiertos:
 					abiertos.append(vecino)
 
-	return []func _ready():
+        return []
+
+func _ready():
 	# Cargar nodos para cubrir área 1280x720 aprox.
 	agregar_nodo("A", Vector2(100, 100))
 	agregar_nodo("B", Vector2(640, 100))
